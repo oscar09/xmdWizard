@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+	<link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.css">
+	<script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.8/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+
+	<link rel="stylesheet" href="source/assets/xmdWizard.css">
+	<script type="text/javascript" src="source/xmdWizard.directive.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MainController">
+	<h1>xmdWizard directive</h1>
+	<p>Active step: {{currentStep}}</p>
+	<p>Edit data: {{editData}}</p>
+	<xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()">
+		<xmd-step label="Step 1" xmd-required="true">
+			<md-input-container>
+				<label>test 1</label>
+				<input type="text" ng-model="editData.test1" required>
+			</md-input-container>
+			<md-input-container>
+				<label>test 2</label>
+				<input type="text" ng-model="editData.test2" required>
+			</md-input-container>
+			<md-input-container>
+				<label>test 3</label>
+				<input type="text" ng-model="editData.test3">
+			</md-input-container>
+		</xmd-step>
+		<xmd-step label="Step 2">
+			<md-input-container>
+				<label>test 4</label>
+				<input type="text" ng-model="editData.test4">
+			</md-input-container>
+			<md-input-container>
+				<label>test 5</label>
+				<input type="text" ng-model="editData.test5">
+			</md-input-container>
+		</xmd-step>
+		<xmd-step label="Step 3">
+			<md-input-container>
+				<label>test 6</label>
+				<input type="text" ng-model="editData.test6">
+			</md-input-container>
+		</xmd-step>
+	</xmd-wizard>
+
+</div>
+<script type="text/javascript">
+	var myApp = angular.module('myApp',['ngMaterial', 'ngMessages', 'xmd.directives.xmdWizard']);
+	myApp.controller('MainController', ['$scope', function($scope) {
+		console.log('loaded');
+
+		$scope.editData = {
+			test1: 'test input'
+		};
+
+		$scope.stepChanged = function()
+		{
+			console.log('step changed');
+		};
+
+		$scope.wizardSaved = function()
+		{
+			console.log('save clicked');
+		};
+
+	}]);
+</script>
+</body>
+</html>

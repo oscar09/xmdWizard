@@ -1,0 +1,18 @@
+<div layout="column" class="x-wizard">
+	<md-nav-bar md-selected-nav-item="activeStep" nav-bar-aria-label="navigation links">
+		<md-nav-item ng-repeat="stepButton in globals.steps" md-nav-click="goto(stepButton, $index)" name="{{$index}}">
+			<div layout="row">
+				<div class="step-number" md-colors="{background: 'accent-400'}">{{$index+1}}</div>
+				<div>{{stepButton.label}}</div>
+			</div>
+		</md-nav-item>
+	</md-nav-bar>
+	<div class="x-content" layout="column" ng-transclude flex>
+	</div>
+	<div layout="row">
+		<span flex></span>
+		<md-button id="back-btn" class="md-raised" ng-disabled="activeStep == 0" ng-click="goBack()">Back</md-button>
+		<md-button id="next-btn" class="md-raised" ng-hide="activeStep == globals.totalSteps - 1" ng-disabled="!nestedForms[activeStep]" ng-click="goToNext()">Next</md-button>
+		<md-button id="next-btn" class="md-raised md-primary" ng-show="activeStep == globals.totalSteps - 1" ng-click="save()">Save</md-button>
+	</div>
+</div>

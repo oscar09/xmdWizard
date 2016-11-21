@@ -1,0 +1,40 @@
+{
+	"name": "xmdwizard",
+	"version": "0.1",
+	"authors": [
+		"Oscar <el_oscar09@yahoo.com>"
+	],
+	"description": "Angular material wizard.",
+	"main":
+		[
+			"build/xmdWizard.directive.js",
+			"build/aseets/xmdWizard.css"
+		],
+	"keywords": [
+		"material wizard",
+		"angular wizard"
+	],
+	"license": "MIT",
+	"homepage": "",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests",
+		"source",
+		".gitignore",
+		".jshintrc",
+		"bower.json",
+		".bowerrc",
+		"Gruntfile.js",
+		"karma.conf.js",
+		"package.json"
+	],
+	"dependencies": {
+		"angular": "^1.5.8",
+		"angular-messages": "^1.5.8",
+		"angular-material": "^1.1.1"
+	}
+}
