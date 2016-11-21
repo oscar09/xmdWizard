@@ -68,7 +68,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('build',
 		[
 			'jshint:all',
-			'karma',
+			//'karma', @todo - add testing
 			'replace',
 			'nginlinetemplates'
 		]
