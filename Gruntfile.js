@@ -52,7 +52,7 @@ module.exports = function (grunt) {
 					]
 				},
 				files: [
-					{expand: true, flatten: true, src: ['source/*.directive.js', 'assets/**/*'], dest: 'build/'}
+					{expand: true, flatten: true, src: ['source/*.directive.js', 'source/assets/**/*'], dest: 'build/'}
 				]
 			}
 		},

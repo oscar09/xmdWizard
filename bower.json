@@ -8,7 +8,7 @@
 	"main":
 		[
 			"build/xmdWizard.directive.js",
-			"build/assets/xmdWizard.css"
+			"build/xmdWizard.css"
 		],
 	"keywords": [
 		"material wizard",
