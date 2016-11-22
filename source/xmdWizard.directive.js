@@ -123,7 +123,7 @@ angular.module('xmd.directives.xmdWizard', [])
 					{
 						scope.globals.steps = [];
 						scope.globals.totalSteps = 0;
-						angular.forEach(angular.element('xmd-step'), function(val, index)
+						angular.forEach(element.find('xmd-step'), function(val, index)
 						{
 							var label = '';
 							if(val.attributes.label)

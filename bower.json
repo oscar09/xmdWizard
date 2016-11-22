@@ -5,16 +5,15 @@
 		"Oscar <el_oscar09@yahoo.com>"
 	],
 	"description": "Angular material wizard.",
-	"main":
-		[
+	"main":[
 			"build/xmdWizard.directive.js",
 			"build/xmdWizard.css"
-		],
+	],
 	"keywords": [
 		"material wizard",
 		"angular wizard"
 	],
-	"license": "MIT",
+	"license": "UNLICENSED",
 	"homepage": "",
 	"private": true,
 	"ignore": [
