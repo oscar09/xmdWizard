@@ -1,0 +1,19 @@
+.x-wizard .step-number
+{
+	width: 24px;
+	min-width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	margin: 0 8px 0 16px;
+	color: #fff;
+}
+
+.x-wizard .ext-content
+{
+	min-height: 100px;
+}
+
+.x-wizard .md-unselected .step-number
+{
+	background-color: lightgray !important;
+}
