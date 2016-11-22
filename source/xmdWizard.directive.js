@@ -10,9 +10,9 @@
  *
  */
 angular.module('xmd.directives.xmdWizard', [])
+	/* grunt-angular-inline-templates */
 	.directive('xmdWizard', [
 		function() {
-			/* grunt-angular-inline-templates */
 			return {
 				restrict: 'AE',
 				templateUrl: 'source/xmdWizard.html',
