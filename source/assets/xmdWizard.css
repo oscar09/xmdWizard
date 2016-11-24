@@ -11,6 +11,10 @@
 .x-wizard .ext-content
 {
 	min-height: 100px;
+}
+
+.x-wizard xmd-step
+{
 	margin: 10px;
 }
 
