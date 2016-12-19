@@ -5,7 +5,7 @@ Wizard for angular material. If any of the steps contains "required" fields then
 **bower install xmdWizard**
 
 Add the following lines in your html:
-```html
+```
 <link rel="stylesheet" href="bower_components/xmdwizard/build/xmdWizard.css">
 <script type="text/javascript" src="bower_components/xmdwizard/build/xmdWizard.directive.js"></script>
 ```
