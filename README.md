@@ -46,6 +46,6 @@ angular.module('clientApp', ['xmd.directives.xmdWizard']);
 
 ##Attributes
 * **activeStep** Step that is currently active.
-* **oncChange** Method to be triggered when the active step changes (back & next buttons clicked).
+* **onChange** Method to be triggered when the active step changes (back & next buttons clicked).
 * **onSave** Method to be triggered when the save button is clicked.
 * **xmdRequired** if set to TRUE the Next button will be disabled if the required fields are missing (Defaults to FALSE).
