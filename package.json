@@ -12,8 +12,11 @@
     "bower": "^1.7.9",
     "grunt": "^1.0.1",
     "grunt-angular-inline-templates": "0.0.2",
+    "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-karma": "^2.0.0",
+    "grunt-parallel": "^0.5.1",
     "grunt-replace": "^1.0.1",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
@@ -35,7 +38,7 @@
     "url": "git+https://github.com/oscar09/xmdWizard.git"
   },
   "keywords": [
-	  "angular material wizard"
+    "angular material wizard"
   ],
   "author": "Oscar",
   "license": "MIT",

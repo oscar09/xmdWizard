@@ -62,6 +62,28 @@ module.exports = function (grunt) {
 				background: false,
 				singleRun: true
 			}
+		},
+		connect: {
+			server: {
+				options: {
+					port: 9000,
+					hostname: 'localhost',
+					open: {
+						target: 'http://localhost:9000/demo.html', // target url to open
+						appName: 'open', // name of the app that opens, ie: open, start, xdg-open
+						callback: function() {} // called when the app has opened
+					}
+				}
+			}
+		},
+		watch: {
+			options: {
+				livereload: false
+			},
+			css: {
+				files: ['source/**/*.js'],
+				tasks: ['jshint:all']
+			}
 		}
 	});
 
@@ -71,6 +93,14 @@ module.exports = function (grunt) {
 			//'karma', @todo - add testing
 			'replace',
 			'nginlinetemplates'
+		]
+	);
+
+	grunt.registerTask('default',
+		[
+			'jshint:all',
+			'connect',
+			'watch'
 		]
 	);
 
