@@ -18,38 +18,40 @@
 	<h1>xmdWizard directive</h1>
 	<p>Active step: {{currentStep}}</p>
 	<p>Edit data: {{editData}}</p>
-	<xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()">
-		<xmd-step label="Step 1" xmd-required="true">
-			<md-input-container>
-				<label>test 1</label>
-				<input type="text" ng-model="editData.test1" required>
-			</md-input-container>
-			<md-input-container>
-				<label>test 2</label>
-				<input type="text" ng-model="editData.test2" required>
-			</md-input-container>
-			<md-input-container>
-				<label>test 3</label>
-				<input type="text" ng-model="editData.test3">
-			</md-input-container>
-		</xmd-step>
-		<xmd-step label="Step 2">
-			<md-input-container>
-				<label>test 4</label>
-				<input type="text" ng-model="editData.test4">
-			</md-input-container>
-			<md-input-container>
-				<label>test 5</label>
-				<input type="text" ng-model="editData.test5">
-			</md-input-container>
-		</xmd-step>
-		<xmd-step label="Step 3">
-			<md-input-container>
-				<label>test 6</label>
-				<input type="text" ng-model="editData.test6">
-			</md-input-container>
-		</xmd-step>
-	</xmd-wizard>
+	<div layout="row" layout-align="center center">
+		<xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()">
+			<xmd-step label="Step 1" xmd-required="true">
+				<md-input-container>
+					<label>test 1</label>
+					<input type="text" ng-model="editData.test1" required>
+				</md-input-container>
+				<md-input-container>
+					<label>test 2</label>
+					<input type="text" ng-model="editData.test2" required>
+				</md-input-container>
+				<md-input-container>
+					<label>test 3</label>
+					<input type="text" ng-model="editData.test3">
+				</md-input-container>
+			</xmd-step>
+			<xmd-step label="Step 2">
+				<md-input-container>
+					<label>test 4</label>
+					<input type="text" ng-model="editData.test4">
+				</md-input-container>
+				<md-input-container>
+					<label>test 5</label>
+					<input type="text" ng-model="editData.test5">
+				</md-input-container>
+			</xmd-step>
+			<xmd-step label="Step 3">
+				<md-input-container>
+					<label>test 6</label>
+					<input type="text" ng-model="editData.test6">
+				</md-input-container>
+			</xmd-step>
+		</xmd-wizard>
+	</div>
 
 </div>
 <script type="text/javascript">
