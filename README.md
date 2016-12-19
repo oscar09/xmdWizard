@@ -1,11 +1,11 @@
-Wizard for angular material. If any of the steps contains "required" fields then the user won't be able to jump to the next step until all the required information is filled out.
+Wizard for angular material. If any of the steps contains "required" fields then the user won't be able to jump to the next step until all the required information is filled out. [View DEMO](https://oscar09.github.io/xmdWizard/demo.html).
 
 ###How to install
 
 **bower install xmdWizard**
 
 Add the following lines in your html:
-```html
+```
 <link rel="stylesheet" href="bower_components/xmdwizard/build/xmdWizard.css">
 <script type="text/javascript" src="bower_components/xmdwizard/build/xmdWizard.directive.js"></script>
 ```
