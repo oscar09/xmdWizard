@@ -203,9 +203,9 @@ angular.module('xmd.directives.xmdWizard', [])
 					//keep an eye on the validation of the form
 					var _set_form_watch = function()
 					{
-						scope.$watch('stepForm.$valid', function(newVal, oldVal)
+						scope.$watch('stepForm.$valid', function(newVal)
 						{
-							if(newVal !== oldVal && scope.globals.id)
+							if(scope.globals.id)
 							{
 								parentController.updateFormValid(scope.globals.id, newVal);
 							}
