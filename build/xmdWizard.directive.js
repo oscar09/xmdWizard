@@ -110,7 +110,14 @@ angular.module('xmd.directives.xmdWizard', [])
 					//keep an eye on the active step .. when it changes, then display the step
 					var _active_watch = scope.$watch('activeStep', function(newVal, oldVal)
 					{
-						if(parseInt(newVal) !== parseInt(oldVal))
+						newVal = parseInt(newVal || 0);
+						oldVal = parseInt(oldVal || 0);
+						if(newVal === oldVal)
+						{
+							return;
+						}
+
+						if(newVal > oldVal)
 						{
 							//1st check if the step is valid.
 							if(!scope.nestedForms[oldVal])
@@ -119,13 +126,13 @@ angular.module('xmd.directives.xmdWizard', [])
 								scope.activeStep = oldVal;
 								return;
 							}
-
-							ctrl.stepUpdated(newVal);
-							try
-							{
-								scope.onChange();
-							}catch(e){}
 						}
+
+						ctrl.stepUpdated(newVal);
+						try
+						{
+							scope.onChange();
+						}catch(e){}
 					});
 
 					scope.$on('$destroy', function()

@@ -22,32 +22,38 @@
 		<xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()">
 			<xmd-step label="Step 1" xmd-required="true">
 				<md-input-container>
-					<label>test 1</label>
+					<label>step 1 test 1</label>
 					<input type="text" ng-model="editData.test1" required>
 				</md-input-container>
 				<md-input-container>
-					<label>test 2</label>
+					<label>step 1 test 2</label>
 					<input type="text" ng-model="editData.test2" required>
 				</md-input-container>
 				<md-input-container>
-					<label>test 3</label>
+					<label>step 1 test 3</label>
 					<input type="text" ng-model="editData.test3">
 				</md-input-container>
 			</xmd-step>
-			<xmd-step label="Step 2">
+			<xmd-step label="Step 2" xmd-required="true">
 				<md-input-container>
-					<label>test 4</label>
-					<input type="text" ng-model="editData.test4">
+					<label>step 2 test 1</label>
+					<input type="text" ng-model="editData.test4" required>
 				</md-input-container>
 				<md-input-container>
-					<label>test 5</label>
+					<label>step 2 test 2</label>
 					<input type="text" ng-model="editData.test5">
 				</md-input-container>
 			</xmd-step>
-			<xmd-step label="Step 3">
+			<xmd-step label="Step 3" xmd-required="true">
 				<md-input-container>
-					<label>test 6</label>
-					<input type="text" ng-model="editData.test6">
+					<label>step 3 test 1</label>
+					<input type="text" required ng-model="editData.test6">
+				</md-input-container>
+			</xmd-step>
+			<xmd-step label="Step 4">
+				<md-input-container>
+					<label>step 4 test 1</label>
+					<input type="text" ng-model="editData.test7">
 				</md-input-container>
 			</xmd-step>
 		</xmd-wizard>
