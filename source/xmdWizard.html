@@ -2,7 +2,7 @@
 	<md-nav-bar md-selected-nav-item="activeStep" nav-bar-aria-label="navigation links">
 		<md-nav-item ng-repeat="stepButton in globals.steps" md-nav-click="goto(stepButton, $index)" name="{{$index}}">
 			<div layout="row">
-				<div class="step-number" md-colors="{background: 'accent-400'}">{{$index+1}}</div>
+				<div class="step-number" md-colors="{background: 'default-accent-400'}">{{$index+1}}</div>
 				<div>{{stepButton.label}}</div>
 			</div>
 		</md-nav-item>
