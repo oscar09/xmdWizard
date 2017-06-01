@@ -13,6 +13,6 @@
 		<span flex></span>
 		<md-button id="back-btn" class="md-raised" ng-disabled="activeStep == 0" ng-click="goBack()">Back</md-button>
 		<md-button id="next-btn" class="md-raised" ng-hide="activeStep == globals.totalSteps - 1" ng-disabled="!nestedForms[activeStep]" ng-click="goToNext()">Next</md-button>
-		<md-button id="next-btn" class="md-raised md-primary" ng-show="activeStep == globals.totalSteps - 1" ng-click="save()">Save</md-button>
+		<md-button id="next-btn" class="md-raised md-primary" ng-disabled="!nestedForms[activeStep]" ng-show="activeStep == globals.totalSteps - 1" ng-click="save()">Save</md-button>
 	</div>
 </div>
