@@ -23,7 +23,8 @@ angular.module('xmd.directives.xmdWizard', [])
 				scope: {
 					activeStep: '=',
 					onChange: '&',
-					onSave: '&'
+					onSave: '&',
+					formRef: '=' //there should be a better solution...
 				},
 				controller: ['$scope', function($scope){
 					/*
@@ -37,9 +38,19 @@ angular.module('xmd.directives.xmdWizard', [])
 					/*
 					* Triggered when the step form changes to invalid/valid
 					* */
-					this.updateFormValid = function(formIndex, isFormValid)
+					this.updateFormValid = function(formIndex, isFormValid, formObject)
 					{
 						$scope.nestedForms[formIndex] = isFormValid;
+
+						/*
+						The following is done to keep a reference to an external form. This way,
+						we can display inline errors. There should be a better way to do this, but
+						I am still working on it.
+						 */
+						if(angular.isDefined($scope.formRef) && !$scope.formRef['step_' + formIndex])
+						{
+							$scope.formRef['step_' + formIndex] = formObject;
+						}
 					};
 				}],
 				link: function postLink(scope, element, attr, ctrl) {
@@ -214,7 +225,7 @@ angular.module('xmd.directives.xmdWizard', [])
 						{
 							if(scope.globals.id)
 							{
-								parentController.updateFormValid(scope.globals.id, newVal);
+								parentController.updateFormValid(scope.globals.id, newVal, scope.stepForm);
 							}
 						});
 					};
@@ -231,7 +242,7 @@ angular.module('xmd.directives.xmdWizard', [])
 							_set_form_watch();
 						}else
 						{
-							parentController.updateFormValid(scope.globals.id, true);
+							parentController.updateFormValid(scope.globals.id, true, scope.stepForm);
 						}
 
 					}, 0);

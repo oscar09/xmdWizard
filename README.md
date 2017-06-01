@@ -49,3 +49,4 @@ angular.module('clientApp', ['xmd.directives.xmdWizard']);
 * **onChange** Method to be triggered when the active step changes (back & next buttons clicked).
 * **onSave** Method to be triggered when the save button is clicked.
 * **xmdRequired** if set to TRUE the Next button will be disabled if the required fields are missing (Defaults to FALSE).
+* **formRef** Reference to an outer form. This is useful to display ng-message errors below the field. In order to reference the form you have to provide the step index. Example: outerFormName.step_0.firstName.$error.
