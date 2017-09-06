@@ -52,10 +52,17 @@ angular.module('xmd.directives.xmdWizard', [])
 							$scope.formRef['step_' + formIndex] = formObject;
 						}
 					};
+					$scope.globals = {}; //prevents isolated scopes inside ng-if, repeat, etc.
+					$scope.globals.steps = [];
+					$scope.globals.totalSteps = 0;
+					this.countStepsAndGetLabel = function(label)
+					{
+						$scope.globals.totalSteps = $scope.globals.totalSteps + 1;
+						$scope.globals.steps.push({label: label});
+					};
 				}],
 				link: function postLink(scope, element, attr, ctrl) {
 
-					scope.globals = {}; //prevents isolated scopes inside ng-if, repeat, etc.
 					scope.nestedForms = [];
 
 
@@ -155,8 +162,8 @@ angular.module('xmd.directives.xmdWizard', [])
 					//gets the number of steps and renders them in the header of the wizard
 					var _getStepsElements = function()
 					{
-						scope.globals.steps = [];
-						scope.globals.totalSteps = 0;
+						//scope.globals.steps = [];
+						//scope.globals.totalSteps = 0;
 						angular.forEach(element.find('xmd-step'), function(val, index)
 						{
 							var label = '';
@@ -168,9 +175,8 @@ angular.module('xmd.directives.xmdWizard', [])
 							angular.element(val).attr('id', 'step_' + index);
 
 							//counts the number of steps
-							scope.globals.totalSteps = scope.globals.totalSteps + 1;
-
-							scope.globals.steps.push({label: label});
+							//scope.globals.totalSteps = scope.globals.totalSteps + 1;
+							//scope.globals.steps.push({label: label});
 						});
 					};
 					_getStepsElements();
@@ -200,7 +206,9 @@ angular.module('xmd.directives.xmdWizard', [])
 				restrict: 'AE',
 				require: '^xmdWizard',
 				transclude: true,
-				scope: {},
+				scope: {
+					label: '@'
+				},
 				template: '<div ng-show="globals.activeId == globals.id"><form name="stepForm" class="body" ng-transclude></form></div>',
 				link: function postLink(scope, element, attr, parentController) {
 
@@ -244,6 +252,8 @@ angular.module('xmd.directives.xmdWizard', [])
 						{
 							parentController.updateFormValid(scope.globals.id, true, scope.stepForm);
 						}
+
+						parentController.countStepsAndGetLabel(scope.label);
 
 					}, 0);
 				}

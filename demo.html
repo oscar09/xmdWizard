@@ -20,7 +20,7 @@
 	<p>Edit data: {{editData}}</p>
 	<div layout="row" layout-align="center center">
 		<xmd-wizard active-step="currentStep" on-change="stepChanged()" on-save="wizardSaved()">
-			<xmd-step label="Step 1" xmd-required="true">
+			<xmd-step label="{{getLabel()}}" xmd-required="true">
 				<md-input-container>
 					<label>step 1 test 1</label>
 					<input type="text" ng-model="editData.test1" required>
@@ -61,9 +61,13 @@
 
 </div>
 <script type="text/javascript">
+	'use strict';
 	var myApp = angular.module('myApp',['ngMaterial', 'ngMessages', 'xmd.directives.xmdWizard']);
 	myApp.controller('MainController', ['$scope', function($scope) {
-		console.log('loaded');
+		$scope.getLabel = function()
+		{
+			return 'Step 1';
+		};
 
 		$scope.editData = {
 			test1: 'test input'
