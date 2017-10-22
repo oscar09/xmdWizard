@@ -50,3 +50,6 @@ angular.module('clientApp', ['xmd.directives.xmdWizard']);
 * **onSave** Method to be triggered when the save button is clicked.
 * **xmdRequired** if set to TRUE the Next button will be disabled if the required fields are missing (Defaults to FALSE).
 * **formRef** Reference to an outer form. This is useful to display ng-message errors below the field. In order to reference the form you have to provide the step index. Example: outerFormName.step_0.firstName.$error.
+* **backLabel** Custom label for the back button. Default is "Back".
+* **nextLabel** Custom label for the next button. Default is "Next".
+* **saveLabel** Custom label for the save button. Default is "Save".

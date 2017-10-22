@@ -21,9 +21,13 @@ angular.module('xmd.directives.xmdWizard', [])
 					activeStep: '=',
 					onChange: '&',
 					onSave: '&',
+					backLabel: '@',
+					nextLabel: '@',
+					saveLabel: '@',
 					formRef: '=' //there should be a better solution...
 				},
-				controller: ['$scope', function($scope){
+				controller: ['$scope', function($scope)
+				{
 					/*
 					* Triggered when a new step is selected
 					* */
