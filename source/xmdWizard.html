@@ -1,5 +1,5 @@
 <div layout="column" class="x-wizard">
-	<md-nav-bar md-selected-nav-item="activeStep" nav-bar-aria-label="navigation links">
+	<md-nav-bar md-selected-nav-item="activeStep" nav-bar-aria-label="navigation links" style="overflow-y: auto">
 		<md-nav-item ng-repeat="stepButton in globals.steps" md-nav-click="goto(stepButton, $index)" name="{{$index}}">
 			<div layout="row">
 				<div class="step-number" md-colors="{background: 'default-accent-400'}">{{$index+1}}</div>
