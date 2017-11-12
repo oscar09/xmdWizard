@@ -63,8 +63,59 @@ angular.module('xmd.directives.xmdWizard', [])
 					};
 				}],
 				link: function postLink(scope, element, attr, ctrl) {
+					var _parent_element = element[0];
+					var _nav_element = element.find('md-nav-bar')[0];
+					var _nav_buttons = _parent_element.getElementsByClassName('js-btn-nav');
+					var _nav_back = _nav_buttons[0];
+					var _nav_next = _nav_buttons[1];
+					var container_element = _parent_element.getElementsByClassName('x-wizard');
+					container_element = container_element[0];
+
+					/* moves the navbar scroll when the back button is clicked. */
+					angular.element(_nav_back).bind('click', function()
+					{
+						_nav_element.scrollBy(-100, 0);
+					});
+
+					/* moves the navbar scroll when the next button is clicked. */
+					angular.element(_nav_next).bind('click', function()
+					{
+						_nav_element.scrollBy(100, 0);
+					});
+
+
+					/* by dfault, hide the nav buttons. */
+					angular.element(_nav_back).hide();
+					angular.element(_nav_next).hide();
+
+					/* checks the width of the parent container and the navbar,
+					when the navbar is greater than the container, then the nav
+					buttons are displayed. */
+					var _wait_to;
+					var _checkWidthsAndResize = function()
+					{
+						/* wait for everything to stabilize */
+						clearTimeout(_wait_to);
+						_wait_to = setTimeout(function()
+						{
+							if(container_element.scrollWidth < _nav_element.scrollWidth)
+							{
+								angular.element(_nav_back).show();
+								angular.element(_nav_next).show();
+							}else
+							{
+								angular.element(_nav_back).hide();
+								angular.element(_nav_next).hide();
+							}
+						}, 1000);
+					};
 
 					scope.nestedForms = [];
+
+					/* keeps an eye on the resize event from the page. */
+					angular.element(window).bind('resize', function () {
+						_checkWidthsAndResize();
+					});
 
 
 					/**
@@ -181,6 +232,7 @@ angular.module('xmd.directives.xmdWizard', [])
 						});
 					};
 					_getStepsElements();
+					_checkWidthsAndResize();
 
 					try
 					{

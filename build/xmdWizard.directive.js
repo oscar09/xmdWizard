@@ -11,7 +11,7 @@
  */
 angular.module('xmd.directives.xmdWizard', [])
 	.run(['$templateCache', function($templateCache) {
-	$templateCache.put('xmdWizard.html', '<div layout=column class=x-wizard><md-nav-bar md-selected-nav-item=activeStep nav-bar-aria-label="navigation links" style="overflow-y: auto"><md-nav-item ng-repeat="stepButton in globals.steps" md-nav-click="goto(stepButton, $index)" name={{$index}}><div layout=row><div class=step-number md-colors="{background: \'default-accent-400\'}">{{$index+1}}</div><div>{{stepButton.label}}</div></div></md-nav-item></md-nav-bar><div class=x-content layout=column ng-transclude="" flex=""></div><div layout=row><span flex=""></span><md-button id=back-btn class=md-raised ng-disabled="activeStep == 0" ng-click=goBack()>{{backLabel || \'Back\'}}</md-button><md-button id=next-btn class=md-raised ng-hide="activeStep == globals.totalSteps - 1" ng-disabled=!nestedForms[activeStep] ng-click=goToNext()>{{nextLabel || \'Next\'}}</md-button><md-button id=next-btn class="md-raised md-primary" ng-disabled=!nestedForms[activeStep] ng-show="activeStep == globals.totalSteps - 1" ng-click=save()>{{saveLabel || \'Save\'}}</md-button></div></div>');
+	$templateCache.put('xmdWizard.html', '<div layout=column class=x-wizard><div layout=row><div><a href=javascript:void(0) class=js-btn-nav><md-icon style="margin-top: 50%" md-svg-src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnPjxwb2x5Z29uIHBvaW50cz0iMTUuNCw3LjQgMTQsNiA4LDEyIDE0LDE4IDE1LjQsMTYuNiAxMC44LDEyICIvPjwvZz48L3N2Zz4=" role=img aria-hidden=true><svg version=1.1 x=0px y=0px viewbox="0 0 24 24" xmlns=http://www.w3.org/2000/svg fit="" height=100% width=100% preserveaspectratio="xMidYMid meet" focusable=false><g><polygon points="15.4,7.4 14,6 8,12 14,18 15.4,16.6 10.8,12 "></polygon></g></svg></md-icon></a></div><md-nav-bar md-selected-nav-item=activeStep nav-bar-aria-label="navigation links" style="overflow-x: hidden"><md-nav-item ng-repeat="stepButton in globals.steps" md-nav-click="goto(stepButton, $index)" name={{$index}}><div layout=row><div class=step-number md-colors="{background: \'default-accent-400\'}">{{$index+1}}</div><div>{{stepButton.label}}</div></div></md-nav-item></md-nav-bar><div><a href=javascript:void(0) class=js-btn-nav><md-icon style="-webkit-transform: translate3d(0,0,0) rotate(180deg); transform: translate3d(0,0,0) rotate(180deg); margin-top: 50%" md-svg-src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnPjxwb2x5Z29uIHBvaW50cz0iMTUuNCw3LjQgMTQsNiA4LDEyIDE0LDE4IDE1LjQsMTYuNiAxMC44LDEyICIvPjwvZz48L3N2Zz4=" role=img aria-hidden=true><svg version=1.1 x=0px y=0px viewbox="0 0 24 24" xmlns=http://www.w3.org/2000/svg fit="" height=100% width=100% preserveaspectratio="xMidYMid meet" focusable=false><g><polygon points="15.4,7.4 14,6 8,12 14,18 15.4,16.6 10.8,12 "></polygon></g></svg></md-icon></a></div></div><div class=x-content layout=column ng-transclude="" flex=""></div><div layout=row><span flex=""></span><md-button id=back-btn class=md-raised ng-disabled="activeStep == 0" ng-click=goBack()>{{backLabel || \'Back\'}}</md-button><md-button id=next-btn class=md-raised ng-hide="activeStep == globals.totalSteps - 1" ng-disabled=!nestedForms[activeStep] ng-click=goToNext()>{{nextLabel || \'Next\'}}</md-button><md-button id=next-btn class="md-raised md-primary" ng-disabled=!nestedForms[activeStep] ng-show="activeStep == globals.totalSteps - 1" ng-click=save()>{{saveLabel || \'Save\'}}</md-button></div></div>');
 }])
 
 	.directive('xmdWizard', [
@@ -66,8 +66,59 @@ angular.module('xmd.directives.xmdWizard', [])
 					};
 				}],
 				link: function postLink(scope, element, attr, ctrl) {
+					var _parent_element = element[0];
+					var _nav_element = element.find('md-nav-bar')[0];
+					var _nav_buttons = _parent_element.getElementsByClassName('js-btn-nav');
+					var _nav_back = _nav_buttons[0];
+					var _nav_next = _nav_buttons[1];
+					var container_element = _parent_element.getElementsByClassName('x-wizard');
+					container_element = container_element[0];
+
+					/* moves the navbar scroll when the back button is clicked. */
+					angular.element(_nav_back).bind('click', function()
+					{
+						_nav_element.scrollBy(-100, 0);
+					});
+
+					/* moves the navbar scroll when the next button is clicked. */
+					angular.element(_nav_next).bind('click', function()
+					{
+						_nav_element.scrollBy(100, 0);
+					});
+
+
+					/* by dfault, hide the nav buttons. */
+					angular.element(_nav_back).hide();
+					angular.element(_nav_next).hide();
+
+					/* checks the width of the parent container and the navbar,
+					when the navbar is greater than the container, then the nav
+					buttons are displayed. */
+					var _wait_to;
+					var _checkWidthsAndResize = function()
+					{
+						/* wait for everything to stabilize */
+						clearTimeout(_wait_to);
+						_wait_to = setTimeout(function()
+						{
+							if(container_element.scrollWidth < _nav_element.scrollWidth)
+							{
+								angular.element(_nav_back).show();
+								angular.element(_nav_next).show();
+							}else
+							{
+								angular.element(_nav_back).hide();
+								angular.element(_nav_next).hide();
+							}
+						}, 1000);
+					};
 
 					scope.nestedForms = [];
+
+					/* keeps an eye on the resize event from the page. */
+					angular.element(window).bind('resize', function () {
+						_checkWidthsAndResize();
+					});
 
 
 					/**
@@ -184,6 +235,7 @@ angular.module('xmd.directives.xmdWizard', [])
 						});
 					};
 					_getStepsElements();
+					_checkWidthsAndResize();
 
 					try
 					{
