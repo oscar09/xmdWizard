@@ -265,7 +265,7 @@ angular.module('xmd.directives.xmdWizard', [])
 				scope: {
 					label: '@'
 				},
-				template: '<div ng-show="globals.activeId == globals.id"><form name="stepForm" class="body" ng-transclude></form></div>',
+				template: '<div ng-show="globals.activeId == globals.id"><form name="stepForm" novalidate class="body" ng-transclude></form></div>',
 				link: function postLink(scope, element, attr, parentController) {
 
 
