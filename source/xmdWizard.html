@@ -6,7 +6,7 @@
 				md-svg-src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnPjxwb2x5Z29uIHBvaW50cz0iMTUuNCw3LjQgMTQsNiA4LDEyIDE0LDE4IDE1LjQsMTYuNiAxMC44LDEyICIvPjwvZz48L3N2Zz4=" role="img" aria-hidden="true"><svg version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false"><g><polygon points="15.4,7.4 14,6 8,12 14,18 15.4,16.6 10.8,12 "></polygon></g></svg></md-icon>
 			</a>
 		</div>
-		<md-nav-bar md-selected-nav-item="activeStep" nav-bar-aria-label="navigation links" style="overflow-x: hidden">
+		<md-nav-bar md-selected-nav-item="activeStep" nav-bar-aria-label="navigation links">
 			<md-nav-item ng-repeat="stepButton in globals.steps" md-nav-click="goto(stepButton, $index)" name="{{$index}}">
 				<div layout="row">
 					<div class="step-number" md-colors="{background: 'default-accent-400'}">{{$index+1}}</div>

@@ -8,6 +8,12 @@
 	color: #fff;
 }
 
+.x-wizard md-nav-bar
+{
+	overflow-x: hidden;
+	width: 100%;
+}
+
 .x-wizard .ext-content
 {
 	min-height: 100px;
