@@ -85,8 +85,8 @@ angular.module('xmd.directives.xmdWizard', [])
 
 
 					/* by dfault, hide the nav buttons. */
-					angular.element(_nav_back).hide();
-					angular.element(_nav_next).hide();
+					angular.element(_nav_back).css('display', 'none');
+					angular.element(_nav_next).css('display', 'none');
 
 					/* checks the width of the parent container and the navbar,
 					when the navbar is greater than the container, then the nav
@@ -100,12 +100,12 @@ angular.module('xmd.directives.xmdWizard', [])
 						{
 							if(container_element.scrollWidth < _nav_element.scrollWidth)
 							{
-								angular.element(_nav_back).show();
-								angular.element(_nav_next).show();
+								angular.element(_nav_back).css('display', 'initial');
+								angular.element(_nav_next).css('display', 'initial');
 							}else
 							{
-								angular.element(_nav_back).hide();
-								angular.element(_nav_next).hide();
+								angular.element(_nav_back).css('display', 'none');
+								angular.element(_nav_next).css('display', 'none');
 							}
 						}, 1000);
 					};
