@@ -1,6 +1,6 @@
 {
   "name": "xmdWizard",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Angular material wizard.",
   "main": ["build/xmdWizard.directive.js", "build/xmdWizard.css"],
   "directories": {
