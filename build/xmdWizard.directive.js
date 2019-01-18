@@ -74,6 +74,15 @@ angular.module('xmd.directives.xmdWizard', [])
 					var container_element = _parent_element.getElementsByClassName('x-wizard');
 					container_element = container_element[0];
 
+					/* workaround. The md-selected-nav-item attr
+					does not work with angular 1.5.9 and material 1.1.12 */
+					var _activateStepManually = function(stepId)
+					{
+						setTimeout(function(){
+							element.find('li[name="'+stepId+'"] button').trigger('click');
+						}, 10);
+					};
+
 					/* moves the navbar scroll when the back button is clicked. */
 					angular.element(_nav_back).bind('click', function()
 					{
@@ -147,6 +156,7 @@ angular.module('xmd.directives.xmdWizard', [])
 							return;
 						}
 						scope.activeStep = parseInt(scope.activeStep) + 1;
+						_activateStepManually(scope.activeStep);
 					};
 
 					/**
@@ -163,6 +173,7 @@ angular.module('xmd.directives.xmdWizard', [])
 							return;
 						}
 						scope.activeStep = parseInt(scope.activeStep) - 1;
+						_activateStepManually(scope.activeStep);
 					};
 
 					/**
@@ -241,6 +252,11 @@ angular.module('xmd.directives.xmdWizard', [])
 					{
 						scope.activeStep = scope.activeStep || 0;
 						ctrl.stepUpdated(scope.activeStep);
+
+						setInterval(function()
+						{
+							_activateStepManually(scope.activeStep);
+						}, 1000);
 					}catch(e){}
 				}
 			};
