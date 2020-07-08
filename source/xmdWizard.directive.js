@@ -267,7 +267,7 @@ angular.module('xmd.directives.xmdWizard', [])
 							{
 								scope.onChange();
 							}catch(e){}
-						})
+						});
 					}, 1000);
 				}catch(e){}
 			}
