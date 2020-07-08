@@ -202,33 +202,7 @@ angular.module('xmd.directives.xmdWizard', [])
 				};
 
 				//keep an eye on the active step .. when it changes, then display the step
-				var _active_watch = scope.$watch('activeStep', function(newVal, oldVal)
-				{
-					newVal = parseInt(newVal || 0);
-					oldVal = parseInt(oldVal || 0);
-					if(newVal === oldVal || newVal === 0)
-					{
-						return;
-					}
-
-					if(newVal > oldVal)
-					{
-						//1st check if the step is valid.
-						if(!scope.nestedForms[oldVal])
-						{
-							//not valid .. then return to the previous step.
-							scope.activeStep = oldVal;
-							//scope.goto(null, oldVal);
-							return;
-						}
-					}
-					scope.goto(null, newVal);
-					//ctrl.stepUpdated(newVal);
-					try
-					{
-						scope.onChange();
-					}catch(e){}
-				});
+				var _active_watch = null;
 
 				scope.$on('$destroy', function()
 				{
@@ -267,6 +241,33 @@ angular.module('xmd.directives.xmdWizard', [])
 					setTimeout(function()
 					{
 						_activateStepManually(scope.innerActiveStep);
+						_active_watch = scope.$watch('activeStep', function(newVal, oldVal)
+						{
+							newVal = parseInt(newVal || 0);
+							oldVal = parseInt(oldVal || 0);
+							if(newVal === oldVal || newVal === 0)
+							{
+								return;
+							}
+
+							if(newVal > oldVal)
+							{
+								//1st check if the step is valid.
+								if(!scope.nestedForms[oldVal])
+								{
+									//not valid .. then return to the previous step.
+									scope.activeStep = oldVal;
+									//scope.goto(null, oldVal);
+									return;
+								}
+							}
+							scope.goto(null, newVal);
+							//ctrl.stepUpdated(newVal);
+							try
+							{
+								scope.onChange();
+							}catch(e){}
+						})
 					}, 1000);
 				}catch(e){}
 			}
