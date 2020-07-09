@@ -257,12 +257,10 @@ angular.module('xmd.directives.xmdWizard', [])
 								{
 									//not valid .. then return to the previous step.
 									scope.activeStep = oldVal;
-									//scope.goto(null, oldVal);
 									return;
 								}
 							}
-							scope.goto(null, newVal);
-							//ctrl.stepUpdated(newVal);
+							_activateStepManually(newVal);
 							try
 							{
 								scope.onChange();
